@@ -149,7 +149,7 @@ class ChatBoxController extends GetxController {
     {
       'sender': 'Jane Wilson',
       'time': '10:00',
-      'message': 'Quick reminder: Submit your weekly\nreport by noon today.',
+      'message': 'Quick reminder: Submit your weekly report\nby noon today.',
       'isMe': false,
       'type': 'text',
       'avatar': 'assets/images/avatar1.png',

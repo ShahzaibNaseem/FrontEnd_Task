@@ -1,0 +1,8 @@
+import 'package:get/get.dart';
+
+class GenderCardController extends GetxController {
+  var malePercentage = 58.obs;
+  var femalePercentage = 42.obs;
+  var maleCount = 352000.obs;
+  var femaleCount = 834000.obs;
+}

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:frontendtask/controllers/sidebar_controller.dart';
-import 'package:frontendtask/pages/sidebar.dart';
+import 'package:frontendtask/controllers/Side%20Bar%20Controller/sidebar_controller.dart';
+import 'package:frontendtask/Custom%20Widgets/SideBar/sidebar.dart';
 import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {

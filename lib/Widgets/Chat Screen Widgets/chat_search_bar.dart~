@@ -1,0 +1,27 @@
+import 'package:flutter/material.dart';
+
+class ChatSearchBar extends StatelessWidget {
+  final Function(String) onSearch;
+
+  ChatSearchBar({required this.onSearch});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 40,
+      decoration: BoxDecoration(
+        color: Colors.grey.shade200,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: TextField(
+        onChanged: onSearch,
+        decoration: InputDecoration(
+          hintText: 'Search...',
+          hintStyle: TextStyle(color: Colors.grey),
+          border: InputBorder.none,
+          prefixIcon: Icon(Icons.search, color: Colors.grey),
+        ),
+      ),
+    );
+  }
+}

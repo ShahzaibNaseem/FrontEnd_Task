@@ -26,14 +26,7 @@ class ChatBoxController extends GetxController {
       'type': 'text',
       'avatar': 'assets/images/avatar1.png',
     },
-    {
-      'sender': 'System',
-      'time': '',
-      'message': 'Today, 10 June',
-      'isMe': false,
-      'type': 'separator',
-      'avatar': '',
-    },
+
     {
       'sender': 'Jacob Hawkins',
       'time': '11:48',
@@ -74,14 +67,7 @@ class ChatBoxController extends GetxController {
       'type': 'text',
       'avatar': 'assets/images/avatar1.png',
     },
-    {
-      'sender': 'System',
-      'time': '',
-      'message': 'Yesterday, 9 June',
-      'isMe': false,
-      'type': 'separator',
-      'avatar': '',
-    },
+
     {
       'sender': 'Jane Wilson',
       'time': '15:45',
@@ -122,14 +108,7 @@ class ChatBoxController extends GetxController {
       'type': 'text',
       'avatar': 'assets/images/avatar1.png',
     },
-    {
-      'sender': 'System',
-      'time': '',
-      'message': 'Monday, 8 June',
-      'isMe': false,
-      'type': 'separator',
-      'avatar': '',
-    },
+
     {
       'sender': 'Brandon Pena',
       'time': '09:30',

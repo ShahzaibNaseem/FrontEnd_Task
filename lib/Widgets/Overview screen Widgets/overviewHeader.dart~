@@ -1,0 +1,113 @@
+import 'package:flutter/material.dart';
+import 'package:frontendtask/Widgets/Overview%20screen%20Widgets/OverviewSlider.dart';
+import 'package:frontendtask/controllers/OverView%20Controllers/overview_controller.dart';
+import 'package:get/get.dart';
+
+class OverviewHeader extends StatelessWidget {
+  final OverviewController controller = Get.put(OverviewController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Title and Settings Icon
+        Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Title Text
+          Text(
+            'Overview',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          // Image Asset
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8), // Ensures image respects border radius
+            child: Image.asset(
+              'assets/images/overview.png', // Path to your local image
+              width: 50, // Set an appropriate width
+              height: 50, // Set an appropriate height
+              fit: BoxFit.cover, // Ensures the image fits within the container
+            ),
+          ),
+        ],
+      ),
+
+          SizedBox(height: 16),
+          Row(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade200,
+                      blurRadius: 5,
+                      spreadRadius: 1,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Icon(Icons.download, color: Colors.black54),
+              ),
+              SizedBox(width: 12),
+              Expanded(
+                child: Container(
+                  height: 40,
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade200,
+                        blurRadius: 5,
+                        spreadRadius: 1,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Obx(() => DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      value: controller.selectedTimeRange.value,
+                      isExpanded: true,
+                      dropdownColor: Colors.white, // Ensures the dropdown menu stays white
+                      borderRadius: BorderRadius.circular(8), // Rounded corners for dropdown menu
+                      icon: Icon(Icons.arrow_drop_down, color: Colors.grey),
+                      items: ['This Week', 'This Month', 'This Year']
+                          .map((String range) {
+                        return DropdownMenuItem<String>(
+                          value: range,
+                          child: Text(
+                            range,
+                            style: TextStyle(fontSize: 14, color: Colors.black87),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        controller.selectedTimeRange.value = value!;
+                      },
+                    ),
+                  )),
+                ),
+              ),
+
+            ],
+          ),
+          SizedBox(height: 16),
+          OverviewSlider(),
+        ],
+      ),
+    );
+
+  }
+}

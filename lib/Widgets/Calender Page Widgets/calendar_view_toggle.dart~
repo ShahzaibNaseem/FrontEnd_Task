@@ -1,0 +1,98 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../controllers/Calender Controllers/calendar_controller.dart';
+
+class CalendarViewToggle extends StatelessWidget {
+  final CalendarController controller = Get.find();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 30),
+          child: Text(
+            'Calendar',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+        ),
+        SizedBox(height: 16),
+        Row(
+          children: [
+            SizedBox(width: 30),
+            Center(
+              child: SizedBox(
+                width: 280,
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(8),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade200,
+                        blurRadius: 5,
+                        spreadRadius: 1,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Obx(() => Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: ['Month', 'Week', 'Day'].map((view) {
+                      return Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            controller.changeView(view);
+                          },
+                          child: AnimatedContainer(
+                            duration: Duration(milliseconds: 200),
+                            margin: EdgeInsets.symmetric(horizontal: 2),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: controller.selectedView.value == view
+                                  ? Colors.white
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Text(
+                              view,
+                              style: TextStyle(
+                                color: controller.selectedView.value == view
+                                    ? Colors.black
+                                    : Colors.grey.shade600,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  )),
+                ),
+              ),
+            ),
+            SizedBox(width: 25),
+            GestureDetector(
+              onTap: () {
+                print('Add Event');
+              },
+              child: Container(
+                width: 40,
+                height: 40,
+                margin: EdgeInsets.only(left: 12),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Icon(Icons.add, color: Colors.white, size: 28),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}

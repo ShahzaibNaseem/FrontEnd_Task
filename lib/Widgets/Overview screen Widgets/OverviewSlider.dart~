@@ -1,0 +1,183 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:frontendtask/controllers/OverView%20Controllers/overview_controller.dart';
+
+class OverviewSlider extends StatelessWidget {
+  final controller = Get.put(OverviewController());
+
+  // Data for each social media platform
+  final List<Map<String, dynamic>> socialMediaData = [
+    {
+      'platform': 'Facebook',
+      'username': 'mitchell.cooper',
+      'followers': '353,49K',
+      'growth': '1.43%',
+      'icon': "assets/images/facebook.png",
+      'iconColor': Colors.blue,
+      'bgColor': Colors.blue.shade50,
+      'growthColor': Colors.green,
+      'growthIcon': Icons.arrow_upward,
+    },
+    {
+      'platform': 'Instagram',
+      'username': '@mitchell.cooper',
+      'followers': '753,90K',
+      'growth': '4.85%',
+      'icon': "assets/images/instagram.webp",
+      'iconColor': Colors.pink,
+      'bgColor': Colors.pink.shade50,
+      'growthColor': Colors.green,
+      'growthIcon': Icons.arrow_upward,
+    },
+    {
+      'platform': 'Twitter',
+      'username': '@mitchell.cooper',
+      'followers': '484,36K',
+      'growth': '2.79%',
+      'icon': "assets/images/twitter.png",
+      'iconColor': Colors.lightBlue,
+      'bgColor': Colors.lightBlue.shade600,
+      'growthColor': Colors.red,
+      'growthIcon': Icons.arrow_downward,
+    }
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 180, // Fixed height for the slider
+      child: PageView.builder(
+        controller: PageController(viewportFraction: 0.9),
+        itemCount: socialMediaData.length,
+        itemBuilder: (context, index) {
+          final data = socialMediaData[index];
+          return Container(
+            margin: EdgeInsets.symmetric(horizontal: 8),
+            padding: EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade200,
+                  blurRadius: 5,
+                  spreadRadius: 1,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Top Row: Icon, Username, Platform Name
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // Social Media Icon
+                    Container(
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: data['bgColor'], // Background color
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Image.asset(
+                        data['icon'], // Path to the image from assets
+                        width: 45,
+                        height: 45,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+
+                    SizedBox(width: 12),
+
+                    // Username and Platform Name
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          data['username'],
+                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          data['platform'],
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+
+                    // Growth Information
+
+                  ],
+                ),
+
+                SizedBox(height: 12), // Space between rows
+
+                // Followers Count
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // Followers Count
+
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Followers Count
+                        Text(
+                          data['followers'],
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 4), // Space between Followers Count and Label
+
+                        // Followers Label
+                        Text(
+                          'Followers',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    Spacer(), // Push Growth to the end
+
+                    // Growth Information
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                      decoration: BoxDecoration(
+                        color: data['growthColor'].withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(data['growthIcon'], color: data['growthColor'], size: 14),
+                          SizedBox(width: 4), // Space between Icon and Text
+                          Text(
+                            data['growth'],
+                            style: TextStyle(
+                              color: data['growthColor'],
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+
+              ],
+            ),
+
+          );
+        },
+      ),
+    );
+  }
+}

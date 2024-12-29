@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:frontendtask/controllers/calendar_controller.dart';
+import 'package:frontendtask/pages/sidebar.dart';
+import 'package:frontendtask/appbar.dart';
+
+import 'calendar_grid.dart';
+import 'calendar_view_toggle.dart';
+
+class CalendarPage extends StatelessWidget {
+  final CalendarController controller = Get.put(CalendarController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[100],
+      appBar: CustomAppBar(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 10),
+          CalendarViewToggle(controller: controller),
+          CalendarGrid(controller: controller),
+        ],
+      ),
+      drawer: Sidebar(),
+    );
+  }
+}
